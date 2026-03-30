@@ -1,0 +1,115 @@
+function calculateInvestment() {                                                                                                                                                                     
+      const initial = parseFloat(document.getElementById('initial').value) || 0;                                                                                                                     
+      const monthly = parseFloat(document.getElementById('monthly').value) || 0;                                                                                                                       
+      const years = parseInt(document.getElementById('years').value) || 0;                                                                                                                             
+      const rate = parseFloat(document.getElementById('rate').value) || 0;                                                                                                                             
+      const tax = parseFloat(document.getElementById('tax').value) || 0;                                                                                                                               
+      const inflation = parseFloat(document.getElementById('inflation').value) || 0;                                                                                                                   
+      const goal = parseFloat(document.getElementById('goal').value) || 0;                                                                                                                             
+      const risk = document.getElementById('risk').value;                                                                                                                                              
+                                                                                                                                                                                                       
+      if (years < 0) { alert('O tempo de investimento não pode ser negativo.'); return; }                                                                                                              
+      if (rate < 0) { alert('A taxa de retorno não pode ser negativa.'); return; }                                                                                                                     
+      if (tax < 0 || tax > 100) { alert('A taxa de imposto deve estar entre 0% e 100%.'); return; }                                                                                                    
+      if (inflation < 0) { alert('A taxa de inflação não pode ser negativa.'); return; }                                                                                                               
+                                                                                                                                                                                                       
+      let baseReturn = rate;                                                                                                                                                                           
+      if (risk === 'conservative') baseReturn = Math.min(baseReturn, 6);                                                                                                                               
+      else if (risk === 'aggressive') baseReturn = Math.max(baseReturn, 8);                                                                                                                            
+                                                                                                                                                                                                       
+      const annualReturn = baseReturn / 100;                                                                                                                                                           
+      const taxRate = tax / 100;                                                                                                                                                                       
+      const inflationRate = inflation / 100;                                                                                                                                                           
+                                                                                                                                                                                                       
+      if (annualReturn < 0) { alert('A taxa de retorno anual resultante é negativa.'); return; }                                                                                                       
+                                                                                                                                                                                                       
+      const months = years * 12;                                                                                                                                                                       
+      const monthlyReturn = annualReturn > 0 ? Math.pow(1 + annualReturn, 1/12) - 1 : 0;                                                                                                             
+                                                                                                                                                                                                       
+      let futureValue;                                                                                                                                                                                 
+      if (annualReturn === 0) {                                                                                                                                                                        
+          futureValue = initial + monthly * months;                                                                                                                                                    
+      } else {                                                                                                                                                                                         
+          futureValue = initial * Math.pow(1 + monthlyReturn, months);                                                                                                                                 
+          if (monthly > 0 && monthlyReturn > 0) {                                                                                                                                                      
+              futureValue += monthly * (Math.pow(1 + monthlyReturn, months) - 1) / monthlyReturn;                                                                                                      
+          }                                                                                                                                                                                            
+      }                                                                                                                                                                                                
+                                                                                                                                                                                                       
+      const totalInvested = initial + (monthly * months);                                                                                                                                              
+      const grossProfit = futureValue - totalInvested;
+      const netProfit = grossProfit > 0 ? grossProfit * (1 - taxRate) : 0;                                                                                                                             
+      const finalAmount = totalInvested + netProfit;                                                                                                                                                   
+                                                                                                                                                                                                       
+      const inflationAdjusted = inflationRate === 0 ? finalAmount : finalAmount / Math.pow(1 + inflationRate, years);                                                                                  
+                                                                                                                                                                                                       
+      let timeNeeded = 0;                                                                                                                                                                              
+      if (goal > 0 && monthlyReturn > 0 && months > 0) {                                                                                                                                             
+          let tempFV = initial;                                                                                                                                                                        
+          let monthsNeeded = 0;                                                                                                                                                                        
+          const maxMonths = years * 4 || 1200;                                                                                                                                                         
+          while (tempFV < goal && monthsNeeded < maxMonths) {                                                                                                                                          
+              monthsNeeded++;                                                                                                                                                                          
+              tempFV = initial * Math.pow(1 + monthlyReturn, monthsNeeded);                                                                                                                            
+              if (monthly > 0) {                                                                                                                                                                       
+                  tempFV += monthly * (Math.pow(1 + monthlyReturn, monthsNeeded) - 1) / monthlyReturn;                                                                                                 
+              }                                                                                                                                                                                        
+          }                                                                                                                                                                                            
+          if (tempFV >= goal) {                                                                                                                                                                        
+              timeNeeded = monthsNeeded / 12;                                                                                                                                                          
+          } else {                                                                                                                                                                                     
+              timeNeeded = years;                                                                                                                                                                      
+          }                                                                                                                                                                                            
+      }                                                                                                                                                                                              
+                                                                                                                                                                                                       
+      const returnOnInv = totalInvested > 0 ? (netProfit / totalInvested) * 100 : 0;                                                                                                                   
+      const annualizedReturn = years > 0 ? returnOnInv / years : 0;
+                                                                                                                                                                                                       
+      const formatCurrency = (val) => isFinite(val) ? `R$ ${val.toFixed(2)}` : 'R$ 0,00';                                                                                                              
+      document.getElementById('futureValue').textContent = formatCurrency(finalAmount);                                                                                                                
+      document.getElementById('totalInvested').textContent = formatCurrency(totalInvested);                                                                                                            
+      document.getElementById('netProfit').textContent = formatCurrency(netProfit);                                                                                                                    
+      document.getElementById('timeNeeded').textContent = isFinite(timeNeeded) ? `${timeNeeded.toFixed(1)} anos` : '0 anos';                                                                           
+      document.getElementById('effectiveRate').textContent = isFinite(annualizedReturn) ? `${(annualizedReturn * 100).toFixed(2)}% ao ano` : '0% ao ano';                                              
+                                                                                                                                                                                                       
+      const goalReached = isFinite(finalAmount) && finalAmount >= goal;                                                                                                                                
+      const goalEl = document.getElementById('goalReached');                                                                                                                                           
+      goalEl.textContent = goalReached ? 'Sim' : 'Não';                                                                                                                                                
+      goalEl.style.color = goalReached ? '#16a34a' : '#dc2626';                                                                                                                                        
+      goalEl.style.fontWeight = 'bold';                                                                                                                                                                
+                                                                                                                                                                                                       
+      let advice = '';                                                                                                                                                                                 
+      if (goalReached) {                                                                                                                                                                               
+          advice = 'Parabéns! Sua estratégia atual está no caminho para alcançar sua meta. Recomendamos revisitar o plano a cada 6 meses para ajustar às mudanças do mercado.';                        
+      } else if (isFinite(finalAmount)) {                                                                                                                                                              
+          const shortage = goal - finalAmount;                                                                                                                                                         
+          if (goal > 0) {                                                                                                                                                                              
+              const monthlyIncrease = shortage > 0 && years > 0 ? shortage / (years * 12) : 0;                                                                                                         
+              advice = `Para alcançar sua meta de R$ ${goal.toFixed(2)}, você precisará de mais R$ ${shortage.toFixed(2)}. Isso corresponde a um acréscimo médio de R$ ${monthlyIncrease.toFixed(2)}   
+  mensais ou um retorno adicional de aproximadamente ${((annualizedReturn * 100).toFixed(2)).toFixed(2)}% ao ano.`;                                                                                    
+          } else {                                                                                                                                                                                     
+              advice = 'Ajuste sua meta de investimento para um valor realista e superior ao total investido.';                                                                                        
+          }                                                                                                                                                                                            
+      } else {                                                                                                                                                                                         
+          advice = 'Sua simulação não produziu resultados financeiros viáveis. Verifique se os valores inseridos são plausíveis e se a taxa de retorno condiz com o perfil de risco escolhido.';       
+      }                                                                                                                                                                                                
+      document.getElementById('adviceText').textContent = advice;                                                                                                                                      
+                                                                                                                                                                                                       
+      document.getElementById('results').style.display = 'block';                                                                                                                                      
+                                                                                                                                                                                                       
+      if (isFinite(finalAmount)) {                                                                                                                                                                     
+          generateInvestmentChart(initial, monthly, monthlyReturn, months);                                                                                                                          
+          generateAnnualBreakdown(initial, monthly, monthlyReturn, taxRate, inflationRate, years);                                                                                                     
+      } else {                                                                                                                                                                                         
+          document.getElementById('investmentChart').innerHTML = '<p>Erro na simulação financeira. Verifique os valores inseridos.</p>';                                                               
+          document.getElementById('annualBreakdown').innerHTML = '';                                                                                                                                   
+      }                                                                                                                                                                                                
+  }                                                                                                                                                                                                    
+                                                                                                                                                                                                       
+  function resetInvestmentForm() {                                                                                                                                                                     
+      document.querySelectorAll('.calc-form input[type="number"]').forEach(el => el.value = '');
+      document.getElementById('risk').value = 'moderate';                                                                                                                                              
+      document.getElementById('results').style.display = 'none';                                                                                                                                       
+      document.getElementById('investmentChart').innerHTML = '';                                                                                                                                       
+      document.getElementById('annualBreakdown').innerHTML = '';                                                                                                                                       
+  }                                                             

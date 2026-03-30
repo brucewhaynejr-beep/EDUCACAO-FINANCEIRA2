@@ -1,0 +1,207 @@
+<!DOCTYPE html>                                                                                                                                                                                      
+  <html lang="pt-BR">                                                                                                                                                                                  
+  <head>                                                                                                                                                                                               
+      <meta charset="UTF-8">                                                                                                                                                                           
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">                                                                                                                           
+      <title>Investimentos - Educação Financeira</title>                                                                                                                                               
+      <link rel="stylesheet" href="css/style.css">                                                                                                                                                     
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">                                                                                  
+  </head>                                                                                                                                                                                              
+  <body>                                                                                                                                                                                               
+      <header class="header">                                                                                                                                                                          
+          <nav class="nav">                                                                                                                                                                            
+              <div class="nav-container">                                                                                                                                                              
+                  <div class="nav-logo">                                                                                                                                                               
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                                                                  
+                          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#10b981"/>                                                                                                                        
+                          <path d="M2 17L12 22L22 17" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>                                                               
+                          <path d="M2 12L12 17L22 12" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>                                                               
+                      </svg>                                                                                                                                                                           
+                      <span class="nav-title">Educação Financeira</span>                                                                                                                               
+                  </div>                                                                                                                                                                               
+                  <ul class="nav-menu">                                                                                                                                                                
+                      <li><a href="index.html" class="nav-link">Início</a></li>                                                                                                                        
+                      <li><a href="budget.html" class="nav-link">Orçamento</a></li>                                                                                                                    
+                      <li><a href="invest.html" class="nav-link active">Investimentos</a></li>                                                                                                         
+                      <li><a href="about.html" class="nav-link">Sobre</a></li>                                                                                                                         
+                      <li><a href="contact.html" class="nav-link">Contato</a></li>                                                                                                                     
+                  </ul>                                                                                                                                                                                
+                  <button class="nav-toggle" aria-label="Toggle menu">                                                                                                                                 
+                      <span></span>                                                                                                                                                                    
+                      <span></span>                                                                                                                                                                  
+                      <span></span>
+                  </button>
+              </div>
+          </nav>                                                                                                                                                                                       
+      </header>
+                                                                                                                                                                                                       
+      <main>                                                                                                                                                                                         
+          <section class="hero">                                                                                                                                                                       
+              <div class="hero-content">                                                                                                                                                               
+                  <h1 class="hero-title">Simulador de Investimentos</h1>                                                                                                                               
+                  <p class="hero-subtitle">Calcule o crescimento do seu patrimônio e planeje seus investimentos.</p>                                                                                   
+              </div>                                                                                                                                                                                   
+          </section>                                                                                                                                                                                   
+                                                                                                                                                                                                       
+          <section class="invest-calculator">                                                                                                                                                        
+              <div class="container">                                                                                                                                                                  
+                  <div class="calc-grid">                                                                                                                                                              
+                      <div class="calc-form">                                                                                                                                                          
+                          <h2>Configurações do Investimento</h2>                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="form-group">                                                                                                                                                     
+                              <label for="initial">Aporte Inicial (R$)</label>                                                                                                                         
+                              <input type="number" id="initial" placeholder="Ex: 5000" step="0.01" min="0">                                                                                            
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="form-group">                                                                                                                                                     
+                              <label for="monthly">Aporte Mensal (R$)</label>                                                                                                                          
+                              <input type="number" id="monthly" placeholder="Ex: 500" step="0.01" min="0">                                                                                             
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="form-group">                                                                                                                                                     
+                              <label for="years">Tempo (anos)</label>                                                                                                                                  
+                              <input type="number" id="years" placeholder="Ex: 10" min="0">                                                                                                            
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="form-group">                                                                                                                                                     
+                              <label for="rate">Taxa de Retorno Anual (%)</label>                                                                                                                    
+                              <input type="number" id="rate" placeholder="Ex: 8" step="0.1" min="0">                                                                                                   
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="form-group">                                                                                                                                                     
+                              <label for="tax">Imposto (%)</label>                                                                                                                                   
+                              <input type="number" id="tax" placeholder="Ex: 15" step="0.1" min="0">                                                                                                   
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="form-group">                                                                                                                                                     
+                              <label for="inflation">Inflação Anual (%)</label>                                                                                                                      
+                              <input type="number" id="inflation" placeholder="Ex: 4" step="0.1" min="0">                                                                                              
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="form-group">                                                                                                                                                     
+                              <label for="goal">Meta (R$)</label>                                                                                                                                    
+                              <input type="number" id="goal" placeholder="Ex: 100000" step="0.01" min="0">                                                                                             
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <button onclick="calculateInvestment()" class="calc-btn">Simular</button>                                                                                                    
+                          <button onclick="resetInvestmentForm()" class="btn btn-secondary">Limpar</button>                                                                                            
+                      </div>                                                                                                                                                                           
+                                                                                                                                                                                                       
+                      <div class="calc-results" id="results" style="display: none">                                                                                                                    
+                          <h2>Resultado</h2>                                                                                                                                                           
+                                                                                                                                                                                                       
+                          <div class="result-card">                                                                                                                                                    
+                              <div class="result-item">                                                                                                                                                
+                                  <span>Valor Futuro</span>                                                                                                                                            
+                                  <span id="futureValue" class="highlight-green">R$ 0,00</span>                                                                                                        
+                              </div>                                                                                                                                                                   
+                              <div class="result-item">                                                                                                                                                
+                                  <span>Total Investido</span>                                                                                                                                         
+                                  <span id="totalInvested" class="highlight-blue">R$ 0,00</span>                                                                                                       
+                              </div>                                                                                                                                                                   
+                              <div class="result-item">                                                                                                                                                
+                                  <span>Lucro Líquido</span>                                                                                                                                           
+                                  <span id="netProfit" class="highlight-bold">R$ 0,00</span>                                                                                                           
+                              </div>                                                                                                                                                                   
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="result-card">                                                                                                                                                    
+                              <div class="result-item">                                                                                                                                                
+                                  <span>Tempo Necessário</span>                                                                                                                                        
+                                  <span id="timeNeeded" class="highlight-blue">0 anos</span>                                                                                                           
+                              </div>                                                                                                                                                                   
+                              <div class="result-item">                                                                                                                                                
+                                  <span>Taxa Efetiva</span>                                                                                                                                            
+                                  <span id="effectiveRate" class="highlight-green">0% ao ano</span>                                                                                                    
+                              </div>                                                                                                                                                                   
+                              <div class="result-item">                                                                                                                                                
+                                  <span>Meta Alcancada?</span>                                                                                                                                         
+                                  <span id="goalReached" class="highlight-bold">Não</span>                                                                                                             
+                              </div>                                                                                                                                                                   
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <div class="advice-box">                                                                                                                                                     
+                              <h4>💡 Dica</h4>                                                                                                                                                         
+                              <p id="adviceText">Preencha os dados e simule.</p>                                                                                                                       
+                          </div>                                                                                                                                                                       
+                                                                                                                                                                                                       
+                          <h3>Evolução do Investimento</h3>                                                                                                                                            
+                          <div id="investmentChart" style="height: 300px; margin-bottom: 2rem;"></div>                                                                                                 
+                                                                                                                                                                                                       
+                          <h3>Composição Anual</h3>                                                                                                                                                    
+                          <div id="annualBreakdown" style="margin-bottom: 2rem;"></div>                                                                                                                
+                      </div>                                                                                                                                                                           
+                  </div>                                                                                                                                                                               
+              </div>                                                                                                                                                                                   
+          </section>                                                                                                                                                                                   
+                                                                                                                                                                                                       
+          <section class="content-cards">                                                                                                                                                              
+              <div class="container">                                                                                                                                                                  
+                  <h2 class="section-title">Tipos de Investimentos</h2>                                                                                                                                
+                  <div class="cards-grid">                                                                                                                                                             
+                      <article class="content-card">                                                                                                                                                   
+                          <h3>Renda Fixa</h3>                                                                                                                                                          
+                          <p>Investimentos de baixo risco como Tesouro Direto, CDB e LCI.</p>                                                                                                          
+                          <ul>                                                                                                                                                                         
+                              <li>Tesouro Selic</li>                                                                                                                                                   
+                              <li>CDB</li>                                                                                                                                                             
+                              <li>LCI/LCA</li>                                                                                                                                                         
+                          </ul>                                                                                                                                                                        
+                      </article>                                                                                                                                                                       
+                      <article class="content-card">                                                                                                                                                   
+                          <h3>Ações</h3>                                                                                                                                                               
+                          <p>Participação em empresas com potencial de valorização.</p>                                                                                                                
+                          <ul>                                                                                                                                                                         
+                              <li>Ações Blue Chips</li>                                                                                                                                                
+                              <li>ETF</li>                                                                                                                                                             
+                              <li>FII</li>                                                                                                                                                             
+                          </ul>                                                                                                                                                                        
+                      </article>                                                                                                                                                                       
+                      <article class="content-card">                                                                                                                                                   
+                          <h3>Renda Variável</h3>                                                                                                                                                      
+                          <p>Investimentos com maior risco e potencial de retorno.</p>                                                                                                                 
+                          <ul>                                                                                                                                                                         
+                              <li>Criptomoedas</li>                                                                                                                                                    
+                              <li>Fundos Imobiliários</li>                                                                                                                                             
+                              <li>Fundos de Ações</li>                                                                                                                                                 
+                          </ul>                                                                                                                                                                        
+                      </article>                                                                                                                                                                       
+                  </div>                                                                                                                                                                               
+              </div>                                                                                                                                                                                 
+          </section>                                                                                                                                                                                   
+      </main>                                                                                                                                                                                        
+                                                                                                                                                                                                       
+      <footer class="footer">                                                                                                                                                                          
+          <div class="container">                                                                                                                                                                      
+              <div class="footer-content">                                                                                                                                                             
+                  <div class="footer-section">                                                                                                                                                         
+                      <h3>Educação Financeira</h3>                                                                                                                                                     
+                      <p>Aprenda a administrar seu dinheiro e construir um futuro financeiro seguro.</p>                                                                                               
+                  </div>                                                                                                                                                                               
+                  <div class="footer-section">                                                                                                                                                         
+                      <h4>Menu</h4>                                                                                                                                                                    
+                      <ul>                                                                                                                                                                             
+                          <li><a href="index.html">Início</a></li>                                                                                                                                     
+                          <li><a href="budget.html">Orçamento</a></li>                                                                                                                                 
+                          <li><a href="invest.html">Investimentos</a></li>                                                                                                                             
+                          <li><a href="about.html">Sobre</a></li>                                                                                                                                      
+                          <li><a href="contact.html">Contato</a></li>                                                                                                                                  
+                      </ul>                                                                                                                                                                            
+                  </div>                                                                                                                                                                               
+                  <div class="footer-section">                                                                                                                                                         
+                      <h4>Contato</h4>                                                                                                                                                                 
+                      <p>Email: contato@educacaofinanceira.com</p>                                                                                                                                     
+                      <p>Telefone: (11) 9999-9999</p>                                                                                                                                                  
+                  </div>                                                                                                                                                                               
+              </div>                                                                                                                                                                                   
+              <div class="footer-bottom">                                                                                                                                                              
+                  <p>&copy; 2026 Educação Financeira. Todos os direitos reservados.</p>                                                                                                                
+              </div>                                                                                                                                                                                   
+          </div>                                                                                                                                                                                       
+      </footer>                                                                                                                                                                                        
+                                                                                                                                                                                                     
+      <script src="js/main.js"></script>                                                                                                                                                               
+      <script src="js/invest.js"></script>                                                                                                                                                           
+  </body>                                                                                                                                                                                              
+  </html>
